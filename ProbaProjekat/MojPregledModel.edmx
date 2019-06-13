@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MojPregledModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MojPregled.dbo.Checkup' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Checkup">
+          <Key>
+            <PropertyRef Name="checkup_id" />
+          </Key>
+          <Property Name="checkup_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="doctor_name" Type="varchar" MaxLength="50" />
+          <Property Name="therapy" Type="varchar" MaxLength="50" />
+          <Property Name="medicaments" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MojPregled.dbo.Comment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="comment_id" />
+          </Key>
+          <Property Name="comment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="comment" Type="varchar" MaxLength="50" />
+          <Property Name="comment_rate" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MojPregled.dbo.Doctor' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="doctor_id" />
+          </Key>
+          <Property Name="doctor_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="doctor_name" Type="varchar" MaxLength="50" />
+          <Property Name="doctor_surname" Type="varchar" MaxLength="50" />
+          <Property Name="doctor_dateofbirh" Type="date" />
+          <Property Name="doctor_city" Type="varchar" MaxLength="50" />
+          <Property Name="doctor_speciality" Type="varchar" MaxLength="50" />
+          <Property Name="doctor_phonenumber" Type="numeric" Precision="18" Scale="0" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MojPregled.dbo.Hospital' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Hospital">
+          <Key>
+            <PropertyRef Name="hospital_id" />
+          </Key>
+          <Property Name="hospital_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="hospital_name" Type="varchar" MaxLength="50" />
+          <Property Name="hospital_address" Type="varchar" MaxLength="50" />
+          <Property Name="hospital_city" Type="varchar" MaxLength="50" />
+          <Property Name="number_of_doctors" Type="int" />
+          <Property Name="number_of_patients" Type="int" />
+          <Property Name="capacity" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MojPregled.dbo.Medicines' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Medicines">
+          <Key>
+            <PropertyRef Name="medicines_id" />
+          </Key>
+          <Property Name="medicines_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="patient_name" Type="varchar" MaxLength="50" />
+          <Property Name="doctor_name" Type="varchar" MaxLength="50" />
+          <Property Name="quantity" Type="varchar" MaxLength="50" />
+          <Property Name="medicines_name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MojPregled.dbo.Patient' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="patient_id" />
+          </Key>
+          <Property Name="patient_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="patient_name" Type="varchar" MaxLength="50" />
+          <Property Name="patient_surname" Type="varchar" MaxLength="50" />
+          <Property Name="patient_dateofbirth" Type="date" />
+          <Property Name="patient_address" Type="varchar" MaxLength="50" />
+          <Property Name="patient_phonenumber" Type="varchar" MaxLength="50" />
+          <Property Name="patient_city" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MojPregled.dbo.Reminder' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Reminder">
+          <Key>
+            <PropertyRef Name="reminder_id" />
+          </Key>
+          <Property Name="reminder_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date_of_previous_checkup" Type="date" />
+          <Property Name="date_of_next_checkup" Type="date" />
+          <Property Name="patient_name" Type="varchar" MaxLength="50" />
+          <Property Name="type" Type="varchar" MaxLength="50" />
+          <Property Name="doctor_name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="MojPregledModelStoreContainer">
+          <EntitySet Name="Checkup" EntityType="Self.Checkup" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Checkup].[checkup_id] AS [checkup_id], 
+    [Checkup].[doctor_name] AS [doctor_name], 
+    [Checkup].[therapy] AS [therapy], 
+    [Checkup].[medicaments] AS [medicaments]
+    FROM [dbo].[Checkup] AS [Checkup]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Comment" EntityType="Self.Comment" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Comment].[comment_id] AS [comment_id], 
+    [Comment].[comment] AS [comment], 
+    [Comment].[comment_rate] AS [comment_rate]
+    FROM [dbo].[Comment] AS [Comment]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Doctor" EntityType="Self.Doctor" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Doctor].[doctor_id] AS [doctor_id], 
+    [Doctor].[doctor_name] AS [doctor_name], 
+    [Doctor].[doctor_surname] AS [doctor_surname], 
+    [Doctor].[doctor_dateofbirh] AS [doctor_dateofbirh], 
+    [Doctor].[doctor_city] AS [doctor_city], 
+    [Doctor].[doctor_speciality] AS [doctor_speciality], 
+    [Doctor].[doctor_phonenumber] AS [doctor_phonenumber]
+    FROM [dbo].[Doctor] AS [Doctor]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Hospital" EntityType="Self.Hospital" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Hospital].[hospital_id] AS [hospital_id], 
+    [Hospital].[hospital_name] AS [hospital_name], 
+    [Hospital].[hospital_address] AS [hospital_address], 
+    [Hospital].[hospital_city] AS [hospital_city], 
+    [Hospital].[number_of_doctors] AS [number_of_doctors], 
+    [Hospital].[number_of_patients] AS [number_of_patients], 
+    [Hospital].[capacity] AS [capacity]
+    FROM [dbo].[Hospital] AS [Hospital]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Medicines" EntityType="Self.Medicines" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Medicines].[medicines_id] AS [medicines_id], 
+    [Medicines].[patient_name] AS [patient_name], 
+    [Medicines].[doctor_name] AS [doctor_name], 
+    [Medicines].[quantity] AS [quantity], 
+    [Medicines].[medicines_name] AS [medicines_name]
+    FROM [dbo].[Medicines] AS [Medicines]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Patient" EntityType="Self.Patient" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Patient].[patient_id] AS [patient_id], 
+    [Patient].[patient_name] AS [patient_name], 
+    [Patient].[patient_surname] AS [patient_surname], 
+    [Patient].[patient_dateofbirth] AS [patient_dateofbirth], 
+    [Patient].[patient_address] AS [patient_address], 
+    [Patient].[patient_phonenumber] AS [patient_phonenumber], 
+    [Patient].[patient_city] AS [patient_city]
+    FROM [dbo].[Patient] AS [Patient]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Reminder" EntityType="Self.Reminder" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Reminder].[reminder_id] AS [reminder_id], 
+    [Reminder].[date_of_previous_checkup] AS [date_of_previous_checkup], 
+    [Reminder].[date_of_next_checkup] AS [date_of_next_checkup], 
+    [Reminder].[patient_name] AS [patient_name], 
+    [Reminder].[type] AS [type], 
+    [Reminder].[doctor_name] AS [doctor_name]
+    FROM [dbo].[Reminder] AS [Reminder]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MojPregledModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Checkup">
+          <Key>
+            <PropertyRef Name="checkup_id" />
+          </Key>
+          <Property Name="checkup_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="doctor_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="therapy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="medicaments" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="comment_id" />
+          </Key>
+          <Property Name="comment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="comment1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="comment_rate" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="doctor_id" />
+          </Key>
+          <Property Name="doctor_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="doctor_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="doctor_surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="doctor_dateofbirh" Type="DateTime" Precision="0" />
+          <Property Name="doctor_city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="doctor_speciality" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="doctor_phonenumber" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Hospital">
+          <Key>
+            <PropertyRef Name="hospital_id" />
+          </Key>
+          <Property Name="hospital_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="hospital_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="hospital_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="hospital_city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="number_of_doctors" Type="Int32" />
+          <Property Name="number_of_patients" Type="Int32" />
+          <Property Name="capacity" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Medicine">
+          <Key>
+            <PropertyRef Name="medicines_id" />
+          </Key>
+          <Property Name="medicines_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="patient_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="doctor_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="quantity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="medicines_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="patient_id" />
+          </Key>
+          <Property Name="patient_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="patient_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="patient_surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="patient_dateofbirth" Type="DateTime" Precision="0" />
+          <Property Name="patient_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="patient_phonenumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="patient_city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Reminder">
+          <Key>
+            <PropertyRef Name="reminder_id" />
+          </Key>
+          <Property Name="reminder_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date_of_previous_checkup" Type="DateTime" Precision="0" />
+          <Property Name="date_of_next_checkup" Type="DateTime" Precision="0" />
+          <Property Name="patient_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="doctor_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="MojPregledEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Checkups" EntityType="Self.Checkup" />
+          <EntitySet Name="Comments" EntityType="Self.Comment" />
+          <EntitySet Name="Doctors" EntityType="Self.Doctor" />
+          <EntitySet Name="Hospitals" EntityType="Self.Hospital" />
+          <EntitySet Name="Medicines" EntityType="Self.Medicine" />
+          <EntitySet Name="Patients" EntityType="Self.Patient" />
+          <EntitySet Name="Reminders" EntityType="Self.Reminder" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MojPregledModelStoreContainer" CdmEntityContainer="MojPregledEntities">
+          <EntitySetMapping Name="Checkups">
+            <EntityTypeMapping TypeName="MojPregledModel.Checkup">
+              <MappingFragment StoreEntitySet="Checkup">
+                <ScalarProperty Name="checkup_id" ColumnName="checkup_id" />
+                <ScalarProperty Name="doctor_name" ColumnName="doctor_name" />
+                <ScalarProperty Name="therapy" ColumnName="therapy" />
+                <ScalarProperty Name="medicaments" ColumnName="medicaments" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="MojPregledModel.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="comment_id" ColumnName="comment_id" />
+                <ScalarProperty Name="comment1" ColumnName="comment" />
+                <ScalarProperty Name="comment_rate" ColumnName="comment_rate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doctors">
+            <EntityTypeMapping TypeName="MojPregledModel.Doctor">
+              <MappingFragment StoreEntitySet="Doctor">
+                <ScalarProperty Name="doctor_id" ColumnName="doctor_id" />
+                <ScalarProperty Name="doctor_name" ColumnName="doctor_name" />
+                <ScalarProperty Name="doctor_surname" ColumnName="doctor_surname" />
+                <ScalarProperty Name="doctor_dateofbirh" ColumnName="doctor_dateofbirh" />
+                <ScalarProperty Name="doctor_city" ColumnName="doctor_city" />
+                <ScalarProperty Name="doctor_speciality" ColumnName="doctor_speciality" />
+                <ScalarProperty Name="doctor_phonenumber" ColumnName="doctor_phonenumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hospitals">
+            <EntityTypeMapping TypeName="MojPregledModel.Hospital">
+              <MappingFragment StoreEntitySet="Hospital">
+                <ScalarProperty Name="hospital_id" ColumnName="hospital_id" />
+                <ScalarProperty Name="hospital_name" ColumnName="hospital_name" />
+                <ScalarProperty Name="hospital_address" ColumnName="hospital_address" />
+                <ScalarProperty Name="hospital_city" ColumnName="hospital_city" />
+                <ScalarProperty Name="number_of_doctors" ColumnName="number_of_doctors" />
+                <ScalarProperty Name="number_of_patients" ColumnName="number_of_patients" />
+                <ScalarProperty Name="capacity" ColumnName="capacity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Medicines">
+            <EntityTypeMapping TypeName="MojPregledModel.Medicine">
+              <MappingFragment StoreEntitySet="Medicines">
+                <ScalarProperty Name="medicines_id" ColumnName="medicines_id" />
+                <ScalarProperty Name="patient_name" ColumnName="patient_name" />
+                <ScalarProperty Name="doctor_name" ColumnName="doctor_name" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="medicines_name" ColumnName="medicines_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Patients">
+            <EntityTypeMapping TypeName="MojPregledModel.Patient">
+              <MappingFragment StoreEntitySet="Patient">
+                <ScalarProperty Name="patient_id" ColumnName="patient_id" />
+                <ScalarProperty Name="patient_name" ColumnName="patient_name" />
+                <ScalarProperty Name="patient_surname" ColumnName="patient_surname" />
+                <ScalarProperty Name="patient_dateofbirth" ColumnName="patient_dateofbirth" />
+                <ScalarProperty Name="patient_address" ColumnName="patient_address" />
+                <ScalarProperty Name="patient_phonenumber" ColumnName="patient_phonenumber" />
+                <ScalarProperty Name="patient_city" ColumnName="patient_city" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reminders">
+            <EntityTypeMapping TypeName="MojPregledModel.Reminder">
+              <MappingFragment StoreEntitySet="Reminder">
+                <ScalarProperty Name="reminder_id" ColumnName="reminder_id" />
+                <ScalarProperty Name="date_of_previous_checkup" ColumnName="date_of_previous_checkup" />
+                <ScalarProperty Name="date_of_next_checkup" ColumnName="date_of_next_checkup" />
+                <ScalarProperty Name="patient_name" ColumnName="patient_name" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="doctor_name" ColumnName="doctor_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
